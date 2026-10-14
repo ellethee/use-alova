@@ -1,0 +1,162 @@
+{
+  "name": "@ilpachi/use-alova",
+  "version": "2.1.1",
+  "description": "Vue 3 wrapper for alova: auth, response pipelines and centralized error handling, with optional notifications, overlay, file helpers and CSRF",
+  "author": {
+    "name": "ilPachi",
+    "url": "https://github.com/ellethee"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellethee/use-alova.git"
+  },
+  "homepage": "https://github.com/ellethee/use-alova#readme",
+  "bugs": {
+    "url": "https://github.com/ellethee/use-alova/issues",
+    "email": "ilpachi@ilpachi.it"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "notify": [
+        "dist/notify.d.ts"
+      ],
+      "overlay": [
+        "dist/overlay.d.ts"
+      ],
+      "files": [
+        "dist/files.d.ts"
+      ],
+      "csrf": [
+        "dist/csrf.d.ts"
+      ],
+      "styles": [
+        "dist/styles.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./notify": {
+      "import": {
+        "types": "./dist/notify.d.ts",
+        "default": "./dist/notify.js"
+      },
+      "require": {
+        "types": "./dist/notify.d.cts",
+        "default": "./dist/notify.cjs"
+      }
+    },
+    "./overlay": {
+      "import": {
+        "types": "./dist/overlay.d.ts",
+        "default": "./dist/overlay.js"
+      },
+      "require": {
+        "types": "./dist/overlay.d.cts",
+        "default": "./dist/overlay.cjs"
+      }
+    },
+    "./files": {
+      "import": {
+        "types": "./dist/files.d.ts",
+        "default": "./dist/files.js"
+      },
+      "require": {
+        "types": "./dist/files.d.cts",
+        "default": "./dist/files.cjs"
+      }
+    },
+    "./csrf": {
+      "import": {
+        "types": "./dist/csrf.d.ts",
+        "default": "./dist/csrf.js"
+      },
+      "require": {
+        "types": "./dist/csrf.d.cts",
+        "default": "./dist/csrf.cjs"
+      }
+    },
+    "./styles": {
+      "import": {
+        "types": "./dist/styles.d.ts",
+        "default": "./dist/overlay.css"
+      },
+      "require": {
+        "types": "./dist/styles.d.cts",
+        "default": "./dist/overlay.css"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "vite build && node scripts/postbuild.mjs && tsc --noEmit -p tsconfig.dist.json",
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p tsconfig.test.json",
+    "test": "vitest run",
+    "lint": "oxlint src",
+    "format": "oxfmt src scripts vite.config.ts vitest.config.ts typedoc.mjs",
+    "format:check": "oxfmt --check src scripts vite.config.ts vitest.config.ts typedoc.mjs",
+    "docs:api": "typedoc",
+    "prepublishOnly": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "peerDependencies": {
+    "alova": "^3.3.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.59.4",
+    "@types/node": "^22.0.0",
+    "@typescript/typescript6": "^6.0.2",
+    "alova": "^3.5.5",
+    "happy-dom": "^20.14.5",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "typedoc": "^0.28.14",
+    "typedoc-plugin-markdown": "^4.9.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-dts": "^5.1.2",
+    "vitest": "^5.0.2",
+    "vue": "^3.5.43"
+  },
+  "keywords": [
+    "alova",
+    "vue",
+    "vue3",
+    "ajax",
+    "http",
+    "csrf",
+    "overlay",
+    "upload",
+    "download"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "strict": true,
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "lib": ["ES2022", "DOM"],
+    "paths": {
+      "@ilpachi/use-alova": ["./dist/index.d.ts"],
+      "@ilpachi/use-alova/notify": ["./dist/notify.d.ts"],
+      "@ilpachi/use-alova/overlay": ["./dist/overlay.d.ts"],
+      "@ilpachi/use-alova/files": ["./dist/files.d.ts"],
+      "@ilpachi/use-alova/csrf": ["./dist/csrf.d.ts"]
+    }
+  },
+  "include": ["scripts/consumer-check.ts"]
+}

@@ -1,0 +1,58 @@
+name: Release
+
+# Publishes to npmjs with trusted publishing (OIDC): no token is stored in the repository.
+# One-time setup on npmjs: package settings > Trusted publisher > GitHub Actions
+# (repository ellethee/use-alova, workflow release.yml).
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.28.3
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check the tag
+        run: |
+          set -eu
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "tag: ${GITHUB_REF_NAME}  package.json version: ${VERSION}"
+          test "v${VERSION}" = "${GITHUB_REF_NAME}" || { echo "The tag does not match the package.json version"; exit 1; }
+          grep -q "^## \[${VERSION}\]" CHANGELOG.md || { echo "CHANGELOG.md has no section '## [${VERSION}]'"; exit 1; }
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+      - name: Publish
+        run: |
+          set -eu
+          NAME="$(node -p "require('./package.json').name")"
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "${NAME}@${VERSION} is already published: nothing to do."
+            exit 0
+          fi
+          # Pre-releases (1.2.0-beta.1) go to the "next" dist-tag instead of "latest".
+          case "${VERSION}" in
+            *-*) TAG_ARGS="--tag next" ;;
+            *) TAG_ARGS="" ;;
+          esac
+          npm publish --provenance --access public --ignore-scripts ${TAG_ARGS}

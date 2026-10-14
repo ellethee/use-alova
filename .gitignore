@@ -1,0 +1,13 @@
+dist/
+node_modules/
+docs/api/
+*.tgz
+.env*
+coverage/
+.DS_Store
+.vscode/
+*.log
+.idea/
+.eslintcache
+.pnpm-store/
+/site

@@ -1,0 +1,11 @@
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+
+overrides:
+  # GHSA-68fv-2mgg-jv7q: source-map-js < 1.2.2 (dipendenza di sviluppo di vite/postcss/sass)
+  source-map-js: ">=1.2.2"
+auditConfig:
+  ignoreGhsas:
+    # sprintf-js <= 1.1.3 senza patch: solo dev (vite-plugin-dts > api-extractor > argparse), non nel pacchetto pubblicato
+    - GHSA-hp3w-g68c-fv3c
