@@ -1,6 +1,6 @@
 {
   "name": "@ilpachi/use-alova",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Vue 3 wrapper for alova: auth, response pipelines and centralized error handling, with optional notifications, overlay, file helpers and CSRF",
   "author": {
     "name": "ilPachi",

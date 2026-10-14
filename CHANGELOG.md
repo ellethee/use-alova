@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-10-14
+
 ### Changed
 
 - Open-source distribution: metadata, docs and GitHub workflows.
@@ -212,7 +214,8 @@ First public release as `@ilpachi/use-alova`.
 - Dual ESM/CJS build with typings; overlay styles available via `@ilpachi/use-alova/styles`.
 - Requires Node >= 20.
 
-[Unreleased]: https://github.com/ellethee/use-alova/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/ellethee/use-alova/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/ellethee/use-alova/releases/tag/v2.1.2
 [2.1.1]: https://github.com/ellethee/use-alova/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/ellethee/use-alova/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/ellethee/use-alova/compare/v1.0.5...v2.0.0
