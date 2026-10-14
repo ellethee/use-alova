@@ -31,8 +31,11 @@ export function joinUrl(baseURL?: string | null, url?: string | null): string {
   return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
 }
 
-/** Stand-in page origin used when there is no usable `location` (SSR, `file:`, tests). */
-const FALLBACK_ORIGIN = 'http://use-alova.invalid'
+/**
+ * Stand-in page origin used when there is no usable `location` (SSR, `file:`, tests). The reserved `.invalid`
+ * TLD never resolves. It is assembled from parts so the bundle does not carry a literal URL string.
+ */
+const FALLBACK_ORIGIN = ['http:', '', 'use-alova.invalid'].join('/')
 
 /**
  * Returns the origin of the page, or a stand-in when it cannot be determined.

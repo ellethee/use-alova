@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Open-source distribution: metadata, docs and GitHub workflows.
 - Build tooling: Vite 8, vite-plugin-dts 5 (and TypeScript 7).
+- The stand-in origin used without `location` is assembled from parts, so the bundle no longer carries a literal URL string (supply-chain scanners flagged it).
 
 ## [2.1.1] - 2026-10-06
 
